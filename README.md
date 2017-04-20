@@ -1,6 +1,6 @@
 # Linux Game Server Managers_ - Docker image
 
-Docker version of LinuxGSM.
+Docker version of [LinuxGSM](https://github.com/GameServerManagers/LinuxGSM).
 
 ## How to use this image
 This image must not be run directly.
