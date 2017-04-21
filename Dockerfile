@@ -42,9 +42,9 @@ RUN adduser \
     steam
 
 # Select the script as entry point
-COPY ./entrypoint-linuxgsm.sh /home/steam/
-RUN chmod u+x /home/steam/entrypoint-linuxgsm.sh && \
-    chown steam:steam /home/steam/entrypoint-linuxgsm.sh
+COPY ./update-linuxgsm.sh /home/steam/
+RUN chmod u+x /home/steam/update-linuxgsm.sh && \
+    chown steam:steam /home/steam/update-linuxgsm.sh
 
 # Switch to the user steam
 USER steam
@@ -52,4 +52,4 @@ USER steam
 # Download and extract steamcmd
 RUN git clone "https://github.com/GameServerManagers/LinuxGSM.git" /home/steam/linuxgsm
 
-ENTRYPOINT ["/home/steam/entrypoint-linuxgsm.sh"]
+CMD ["/home/steam/update-linuxgsm.sh"]
