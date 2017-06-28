@@ -49,7 +49,8 @@ RUN chmod u+x /home/steam/update-linuxgsm.sh && \
 # Switch to the user steam
 USER steam
 
-# Download and extract steamcmd
-RUN git clone "https://github.com/GameServerManagers/LinuxGSM.git" /home/steam/linuxgsm
+# Install LinuxGSM
+RUN git clone "https://github.com/GameServerManagers/LinuxGSM.git" /home/steam/linuxgsm && \
+    /home/steam/update-linuxgsm.sh
 
 CMD ["/home/steam/update-linuxgsm.sh"]
