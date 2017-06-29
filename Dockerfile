@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:16.04
 
 # Stop apt-get asking to get Dialog frontend
 ENV DEBIAN_FRONTEND noninteractive
@@ -43,8 +43,9 @@ RUN adduser \
 
 # Select the script as entry point
 COPY ./update-linuxgsm.sh /home/steam/
-RUN chmod u+x /home/steam/update-linuxgsm.sh && \
-    chown steam:steam /home/steam/update-linuxgsm.sh
+RUN [ -d /home/steam/linuxgsm ] || mkdir -p /home/steam/linuxgsm && \
+    chown -R steam:steam /home/steam && \
+    chmod u+x /home/steam/update-linuxgsm.sh
 
 # Switch to the user steam
 USER steam
