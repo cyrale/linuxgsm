@@ -7,10 +7,11 @@ ENV TERM xterm
 # Install dependencies and clean
 RUN dpkg --add-architecture i386 && \
     apt-get update && \
-    apt-get install -y \
+    apt-get install --no-install-recommends -y \
         binutils \
         bsdmainutils \
         bzip2 \
+        ca-certificates \
         curl \
         file \
         git \
