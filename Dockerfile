@@ -1,8 +1,19 @@
 FROM debian:buster-slim
 
 # Stop apt-get asking to get Dialog frontend
-ENV DEBIAN_FRONTEND noninteractive
-ENV TERM xterm
+ENV DEBIAN_FRONTEND=noninteractive \
+    TERM=xterm
+
+# LinuxGSM_ variables
+ENV LGSM_VERSION="latest" \
+    LGSM_GAMESERVER="" \
+    LGSM_GAMESERVER_UPDATE="true" \
+    LGSM_GAMESERVER_START="false" \
+    LGSM_GAMESERVER_RENAME="" \
+    LGSM_COMMON_CONFIG="" \
+    LGSM_COMMON_CONFIG_FILE="" \
+    LGSM_SERVER_CONFIG="" \
+    LGSM_SERVER_CONFIG_FILE=""
 
 # Fix for JRE installation
 RUN mkdir -p /usr/share/man/man1/
@@ -57,26 +68,30 @@ RUN npm set progress=false && \
     npm install --no-audit --global gamedig && \
     npm cache clean --force
 
-# # Set the locale
+# Set the locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     locale-gen
-ENV LANG en_US.UTF-8  
-ENV LANGUAGE en_US:en  
-ENV LC_ALL en_US.UTF-8
+ENV LANG=en_US.UTF-8 \
+    LANGUAGE=en_US:en \ 
+    LC_ALL=en_US.UTF-8
 
 # Add the steam user
 RUN adduser \
     --disabled-login \
     --disabled-password \
-    --gecos "" \
     --shell /bin/bash \
+    --gecos "" \
     linuxgsm && \
     usermod -G tty linuxgsm
+
+COPY ./scripts/*.sh /
+RUN chmod +x /*.sh
 
 # Switch to the user steam
 USER linuxgsm
 
-# Install LinuxGSM
-WORKDIR /home/linuxgsm
-RUN wget -q -O ./linuxgsm.sh https://linuxgsm.sh && \
-    chmod +x ./linuxgsm.sh
+VOLUME ["/home/linuxgsm"]
+
+ENTRYPOINT ["/entrypoint.sh"]
+
+HEALTHCHECK --interval=60s --timeout=30s --start-period=300s --retries=3 CMD [ "/lgsm_healthcheck.sh" ]
