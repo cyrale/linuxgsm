@@ -1,6 +1,9 @@
 #!/bin/bash
 
-source /lgsm_bootstrap.sh
+if [ -f /lgsm_bootstrap.sh ]
+then
+    source /lgsm_bootstrap.sh
+fi
 source /lgsm_functions.sh
 
 if [ $# = 0 ]
