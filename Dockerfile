@@ -89,6 +89,7 @@ RUN chmod +x /*.sh
 
 # Switch to the user steam
 USER linuxgsm
+WORKDIR /home/linuxgsm
 
 VOLUME ["/home/linuxgsm"]
 
