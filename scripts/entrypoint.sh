@@ -5,6 +5,7 @@ then
     source /lgsm_bootstrap.sh
 fi
 source /lgsm_functions.sh
+source /lgsm_variables.sh
 
 if [ $# = 0 ]
 then
