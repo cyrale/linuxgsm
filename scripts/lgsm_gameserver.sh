@@ -85,6 +85,11 @@ fn_apply_configuration "${common_config_file}" "${LGSM_COMMON_CONFIG}" "${LGSM_C
 echo -e "Apply game server configuration"
 fn_apply_configuration "${server_config_file}" "${LGSM_SERVER_CONFIG}" "${LGSM_SERVER_CONFIG_FILE}"
 
+if [ -f /lgsm_configuration.sh ]
+then
+    /lgsm_configuration.sh
+fi
+
 # Update game server
 if [ "${LGSM_GAMESERVER_UPDATE}" == "true" ]
 then
