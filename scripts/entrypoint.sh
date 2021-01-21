@@ -13,15 +13,15 @@ then
     # no command
     fn_check_user
 
-    /lgsm_install.sh
-    /lgsm_gameserver.sh
-    /lgsm_start.sh
-    
+    source /lgsm_install.sh
+    source /lgsm_gameserver.sh
+    source /lgsm_start.sh
+
     if [ -f /lgsm_console.sh ]
     then
-        /lgsm_console.sh
+        source /lgsm_console.sh
     fi
-    
+
     tail -f /dev/null
 else
     # execute the command passed through docker

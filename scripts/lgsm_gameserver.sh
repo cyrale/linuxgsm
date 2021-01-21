@@ -78,7 +78,7 @@ fn_apply_configuration "${server_config_file}" "${LGSM_SERVER_CONFIG}" "${LGSM_S
 
 if [ -f /lgsm_configuration.sh ]
 then
-    /lgsm_configuration.sh
+    source /lgsm_configuration.sh
 fi
 
 # Update game server
