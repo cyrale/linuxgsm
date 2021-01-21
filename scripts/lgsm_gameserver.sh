@@ -15,7 +15,7 @@ cd "${HOME}"
 
 lgsm_gameserver_script="${gameserver_original_script}"
 
-if [ ! -f "${gameserver_original_script}" ] && [ ! -f "${gameserver_original_script}" ]
+if [ ! -f "${gameserver_original_script}" ] && [ ! -f "${gameserver_renamed_script}" ]
 then
     # First installation
 
