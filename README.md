@@ -1,3 +1,7 @@
+:warning:
+
+Sorry, I have no more time to maintain this project and I no longer play ProjectZomboid to properly follow its progress. Feel free to fork this project and continue this work on your side.
+
 # Linux Game Server Managers\_ - Docker image
 
 Docker version of [LinuxGSM\_](https://github.com/GameServerManagers/LinuxGSM).
